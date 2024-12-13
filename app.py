@@ -67,6 +67,8 @@ def update_graph(id, pathname):
         fig.add_trace(go.Scatter(x=df['date'], y=df['max_temp'], mode='lines', name='Max Temperature'))
         fig.add_trace(go.Scatter(x=df['date'], y=df['min_temp'], mode='lines', name='Min Temperature'))
         fig.add_trace(go.Scatter(x=df['date'], y=df['humidity'], mode='lines', name='Humidity (%)'))
+        fig.add_trace(go.Scatter(x=df['date'], y=df['wind_speed'], mode='lines', name='Wind Speed (m/s)'))
+        fig.add_trace(go.Scatter(x=df['date'], y=df['rain_probability'], mode='lines', name='Rain Probability (%)'))
         fig.update_layout(title=f"Weather Forecast",
                           xaxis_title="Date",
                           yaxis_title="Value",
