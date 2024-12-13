@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Route Checker</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Проверка погодных условий</h1>
+    <form action="/check_weather" method="POST">
+        <label for="start">Начальная точка:</label>
+        <input type="text" id="start" name="start" placeholder="Введите название города" required>
+
+        {% for i in range(count-1) %}
+        <label for="stop_{{ i }}">Промежуточная точка {{ i+1 }}:</label>
+        <input type="text" id="stop_{{ i }}" name="stop_{{ i }}" placeholder="Введите название города">
+        {% endfor %}
+        
+        <!-- <p><a href="/check_weather/{{ count+1 }}">Добавить промежуточную точку</a></p> -->
+        <p><button type="button" onclick="location.href='/check_weather/{{ count-1 }}'">Убрать промежуточную точку</button></p>
+        
+        <p><button type="button" onclick="location.href='/check_weather/{{ count+1 }}'">Добавить промежуточную точку</button></p>
+        <label for="end">Конечная точка:</label>
+        <input type="text" id="end" name="end" placeholder="Введите название города" required>
+        <input type="hidden" name="count" value="{{ count }}">
+        
+        <button type="submit">Проверить погоду</button>
+    </form>
+
+    <a href="/" class="back_button">Назад</a>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="result-container">
+        <h1>Результат проверки</h1>
+        <p>Начальная точка: {{ start }}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Максимальная температура</th>
+                    <th>Минимальная температура</th>
+                    <th>Влажность</th>
+                    <th>Скорость ветра (км/ч)</th>
+                    <th>Вероятность осадков (%)</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in city1_weather %}
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.max_temp }}</td>
+                    <td>{{ item.min_temp }}</td>
+                    <td>{{ item.humidity }}</td>
+                    <td>{{ item.wind_speed }}</td>
+                    <td>{{ item.rain_probability }}</td>
+                    <td>{{ '🔴' if item.is_bad() else '🟢' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% for i in range(count) %}
+        <p>{{ stops[i] }}:</p>
+        <a href="/view/{{stops[i]}}">Посмотреть подробнее</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Максимальная температура</th>
+                    <th>Минимальная температура</th>
+                    <th>Влажность</th>
+                    <th>Скорость ветра (км/ч)</th>
+                    <th>Вероятность осадков (%)</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in stops_weather[i] %}
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.max_temp }}</td>
+                    <td>{{ item.min_temp }}</td>
+                    <td>{{ item.humidity }}</td>
+                    <td>{{ item.wind_speed }}</td>
+                    <td>{{ item.rain_probability }}</td>
+                    <td>{{ '🔴' if item.is_bad() else '🟢' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+
+
+
+
+        <p>Конечная точка: {{ end }}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Максимальная температура</th>
+                    <th>Минимальная температура</th>
+                    <th>Влажность</th>
+                    <th>Скорость ветра (км/ч)</th>
+                    <th>Вероятность осадков (%)</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in city2_weather %}
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.max_temp }}</td>
+                    <td>{{ item.min_temp }}</td>
+                    <td>{{ item.humidity }}</td>
+                    <td>{{ item.wind_speed }}</td>
+                    <td>{{ item.rain_probability }}</td>
+                    <td>{{ '🔴' if item.is_bad() else '🟢' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Результат</h3>
+        <p>{{ 'Погода во время поездки может быть плохой' if result else 'Погода во время поездки должна быть хорошей' }}</p>
+
+        <a href="/check_weather">Назад</a>
+    </div>
+</body>
+</html>
