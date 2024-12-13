@@ -26,3 +26,6 @@ results page
 description page
 ![alt text](img/description.png)
 
+description choose categories
+![alt text](img/desc2.png)
+
