@@ -10,6 +10,7 @@
     <div class="result-container">
         <h1>Результат проверки</h1>
         <p>Начальная точка: {{ start }}</p>
+        <a href="/dash/{{start_city.key}}">Посмотреть подробнее</a>
         <table>
             <thead>
                 <tr>
@@ -40,7 +41,7 @@
 
         {% for i in range(count) %}
         <p>{{ stops[i] }}:</p>
-        <a href="/view/{{stops[i]}}">Посмотреть подробнее</a>
+        <a href="/dash/{{stops_codes[i].key}}">Посмотреть подробнее</a>
         <table>
             <thead>
                 <tr>
@@ -73,6 +74,7 @@
 
 
         <p>Конечная точка: {{ end }}</p>
+        <a href="/dash/{{end_city.key}}">Посмотреть подробнее</a>
         <table>
             <thead>
                 <tr>
